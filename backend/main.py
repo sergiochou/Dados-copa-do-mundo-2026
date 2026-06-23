@@ -50,19 +50,7 @@ app.include_router(artilheiros.router)
 app.include_router(grupos.router)
 app.include_router(cache_router.router)
 
-@app.get("/", tags=["Info"])
-async def root():
-    return {
-        "api": "Copa do Mundo 2026",
-        "docs": "/docs",
-        "endpoints": [
-            "/api/jogos",
-            "/api/estatisticas/{id}",
-            "/api/artilheiros",
-            "/api/grupos",
-            "/cache/info"
-        ]
-    }
+
 
 @app.on_event("startup")
 async def startup_event():
