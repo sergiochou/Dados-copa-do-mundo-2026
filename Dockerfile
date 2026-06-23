@@ -14,9 +14,12 @@ RUN pip install --no-cache-dir -r backend/requirements.txt
 # Copia todos os arquivos do projeto
 COPY . .
 
+# Define o diretório de trabalho como backend para resolver os caminhos de importação do Python
+WORKDIR /app/backend
+
 # Expõe a porta padrão (Hugging Face Spaces usa 7860, Render usa a variável $PORT)
 EXPOSE 7860
 ENV PORT=7860
 
 # Comando para rodar o servidor FastAPI (usa a variável $PORT do ambiente)
-CMD uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+CMD uvicorn main:app --host 0.0.0.0 --port $PORT
