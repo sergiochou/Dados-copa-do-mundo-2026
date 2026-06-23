@@ -1,0 +1,7 @@
+# Dependências do Servidor Backend — Copa do Mundo 2026
+# Instale com: pip install -r requirements.txt
+
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+httpx==0.27.0
+cachetools==5.3.3

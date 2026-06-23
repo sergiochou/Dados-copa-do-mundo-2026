@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dashboard analítico da Copa do Mundo FIFA 2026 — estatísticas, grupos e confrontos." />
+  <title>Copa do Mundo 2026 · Dashboard</title>
+
+  <!-- Google Fonts: Bebas Neue (display) + DM Sans (corpo) + DM Mono (dados) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAVBAR — fixa no topo, sempre visível
+       ═══════════════════════════════════════════ -->
+  <nav class="navbar" role="navigation" aria-label="Navegação principal">
+
+    <!-- Brand -->
+    <div class="navbar__brand" aria-hidden="true">
+      <span class="navbar__trophy">🏆</span>
+      <div>
+        <span class="navbar__title">Copa do Mundo</span>
+        <span class="navbar__year">FIFA 2026</span>
+      </div>
+    </div>
+
+    <!-- Tabs (geradas por app.js via buildNavbar()) -->
+    <ul id="nav-list" role="tablist" aria-label="Seções do dashboard">
+      <!-- Populado dinamicamente pelo app.js -->
+    </ul>
+
+    <!-- Indicador de fonte de dados (Mock / API Real) e botão Sincronizar -->
+    <div class="navbar__actions">
+      <span id="mode-indicator" class="mode-badge mode-badge--mock" aria-live="polite">
+        Mock
+      </span>
+      <button id="sync-button" class="btn-sync" aria-label="Sincronizar dados">
+        <span class="btn-sync__icon">🔄</span>
+        <span class="btn-sync__text">Sincronizar</span>
+      </button>
+    </div>
+
+    <!-- Botão hamburger — visível apenas em mobile -->
+    <button
+      class="menu-toggle"
+      id="menu-toggle"
+      aria-label="Abrir menu de navegação"
+      aria-expanded="false"
+      aria-controls="nav-list"
+    >
+      <span class="menu-toggle__bar"></span>
+      <span class="menu-toggle__bar"></span>
+      <span class="menu-toggle__bar"></span>
+    </button>
+
+  </nav>
+
+  <!-- Overlay escuro para fechar menu mobile -->
+  <div id="nav-overlay" class="hidden" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════════════
+       SHELL DA APLICAÇÃO
+       ═══════════════════════════════════════════ -->
+  <div class="app-shell">
+    <!--
+      #app-view é o único container onde as views são renderizadas.
+      O roteador em app.js substitui o innerHTML deste elemento
+      ao navegar entre abas — sem recarregar a página.
+    -->
+    <main
+      id="app-view"
+      role="tabpanel"
+      aria-live="polite"
+      aria-label="Conteúdo da aba selecionada"
+    >
+      <!-- Conteúdo inicial: loader (substituído pelo app.js) -->
+      <div class="loader-wrap">
+        <div class="spinner"></div>
+        <span class="loader-text">Iniciando dashboard…</span>
+      </div>
+    </main>
+  </div>
+
+  <!--
+    ═══════════════════════════════════════════════
+    SCRIPTS
+    Carregados como módulos ES6 para suportar
+    import/export entre os arquivos do projeto.
+    ═══════════════════════════════════════════════
+
+    ATENÇÃO: Para rodar localmente sem um servidor,
+    você precisa de um servidor HTTP simples, pois
+    módulos ES6 não funcionam via file://.
+
+    Opções rápidas:
+      • VS Code → extensão "Live Server" (clique em "Go Live")
+      • Terminal → npx serve .
+      • Terminal → python -m http.server 8080
+  -->
+  <script type="module" src="app.js"></script>
+
+</body>
+</html>

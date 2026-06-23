@@ -1,0 +1,29 @@
+# Ambientes virtuais do Python
+.venv/
+venv/
+ENV/
+env/
+
+# Cache do Python
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos de logs e debug locais
+*.log
+scratch/
+test_*.py
+verify_*.py
+check_*.py
+clear_and_check.py
+filter_2026_events.py
+print_sofascore_ids.py
+search_css.py
+
+# IDEs
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db
