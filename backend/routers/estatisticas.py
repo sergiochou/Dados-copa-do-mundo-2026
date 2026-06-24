@@ -15,7 +15,7 @@ router = APIRouter(tags=["Estatísticas"])
 )
 async def get_estatisticas(
     partida_id: int = Path(..., description="ID da partida no SofaScore", gt=0),
-    background_tasks: BackgroundTasks | None = None
+    background_tasks: BackgroundTasks = None
 ):
     CACHE_KEY = f"stats_{partida_id}"
 
