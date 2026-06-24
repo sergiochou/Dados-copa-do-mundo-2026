@@ -27,3 +27,6 @@ search_css.py
 # Sistema
 .DS_Store
 Thumbs.db
+
+# Cache de dados local
+backend/cache_files/
