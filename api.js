@@ -316,7 +316,11 @@ export async function fetchTopScorers() {
   return {
     response: data.map(p => ({
       player: { id: p.jogador_id, name: p.nome, nationality: "", photo: "" },
-      statistics: [{ goals: { total: p.gols }, team: { id: p.time_id, name: p.time, code: p.sigla } }]
+      statistics: [{
+        goals: { total: p.gols },
+        team: { id: p.time_id, name: p.time, code: p.sigla },
+        games: { appearances: p.jogos }
+      }]
     }))
   };
 }

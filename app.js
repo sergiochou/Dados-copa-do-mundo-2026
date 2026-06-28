@@ -18,6 +18,7 @@ import { renderMatches }   from "./views/matches.js";
 import { renderTeams }     from "./views/teams.js";
 import { USE_REAL_API, clearCache } from "./api.js";
 import { showToast }       from "./utils.js";
+import { loadSheetJS, exportAllDataToExcel } from "./excelExport.js";
 
 /* ─── Definição das rotas ────────────────────────────────────── */
 const ROUTES = {
@@ -39,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
   attachNavEvents();
   attachMobileMenuToggle();
   attachSyncEvent();
+  attachExportEvent();
 
   // Rota inicial: usa hash da URL ou padrão
   const initialHash = Object.keys(ROUTES).includes(window.location.hash)
@@ -197,4 +199,34 @@ function updateModeIndicator() {
     indicator.textContent = "Mock";
     indicator.className   = "mode-badge mode-badge--mock";
   }
+}
+
+function attachExportEvent() {
+  const exportBtn = document.getElementById("export-excel-btn");
+  if (!exportBtn) return;
+
+  exportBtn.addEventListener("click", async () => {
+    // Evita cliques duplos se já estiver exportando
+    if (exportBtn.classList.contains("btn-sync--syncing")) return;
+
+    // Ativa animação visual no botão
+    exportBtn.classList.add("btn-sync--syncing");
+    const textSpan = exportBtn.querySelector(".btn-sync__text");
+    if (textSpan) textSpan.textContent = "Exportando...";
+
+    try {
+      // Carrega SheetJS de forma assíncrona
+      await loadSheetJS();
+      // Gera o Excel
+      await exportAllDataToExcel();
+      showToast("Planilha Excel gerada com sucesso!", "success");
+    } catch (error) {
+      console.error("Falha ao exportar Excel", error);
+      showToast(error.message || "Erro ao exportar dados para Excel.", "error");
+    } finally {
+      // Desativa animação e restaura estado original
+      exportBtn.classList.remove("btn-sync--syncing");
+      if (textSpan) textSpan.textContent = "Exportar Excel";
+    }
+  });
 }
