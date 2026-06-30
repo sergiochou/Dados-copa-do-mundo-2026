@@ -10,7 +10,7 @@ SOFASCORE_BASE = "https://api.sofascore.com/api/v1"
 import os
 
 # Chave do ScraperAPI para contornar o bloqueio do Cloudflare
-SCRAPER_API_KEY = os.environ.get("SCRAPER_API_KEY", "a331e13108735032ca55c4859a12472d")
+SCRAPER_API_KEY = os.environ.get("SCRAPER_API_KEY", "6f63dc2934fd3997339695bd89ee89ac")
 
 # Headers que simulam um navegador real para evitar bloqueios (403/Cloudflare)
 BROWSER_HEADERS = {
